@@ -6,19 +6,17 @@ class OddballParticle //inherits from Particle
 class Particle {
   double myX, myY, mySpeed;
   double myAngle;
+  int myC;
   Particle(){
-    myX=myY=200;
+    myX=myY=500;
     myAngle=Math.random()*2*Math.PI;
-    mySpeed=(int)(Math.random()*10);
+    mySpeed=(Math.random()*10);
+    myC=color(255);
   }
   
   void show(){
-    fill(
-      (int)(Math.random()*256),
-      (int)(Math.random()*256),
-      (int)(Math.random()*256)
-    );
-    ellipse((float)myX,(float)myY,20.f,20.f);
+    fill (myC);
+    ellipse((float)myX,(float)myY,10,10);
   }
   
   void move(){
@@ -26,10 +24,10 @@ class Particle {
     myY=myY+(Math.sin(myAngle))*mySpeed;
   }
 }
-  Particle[] sue = new Particle[100];
+  Particle[] sue = new Particle[1000];
   
   void setup(){
-    size(800,600);
+    size(1000,1000);
     noStroke();
     for(int i = 0; i<sue.length; i++){
       sue[i]= new Particle();
