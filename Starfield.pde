@@ -1,43 +1,62 @@
-class OddballParticle //inherits from Particle
+class OddballParticle extends Particle //inherits from Particle
 {
-	//your code here
+    OddballParticle(){
+      myX=myY=500;
+      myAngle=((int)(Math.random()*2*Math.PI));
+      mySpeed=(Math.random()*0)+1;
+      myC=color(255,0,0);
+    }
+    
+    void show(){
+      fill (myC);
+      ellipse((float)myX,(float)myY,100,100);
+    }
 }
+
 
 class Particle {
   double myX, myY, mySpeed;
-  double myAngle;
+  int myAngle;
   int myC;
-  Particle(){
+  Particle() {
     myX=myY=500;
-    myAngle=Math.random()*2*Math.PI;
-    mySpeed=(Math.random()*10);
+    myAngle=((int)(Math.random()*2*Math.PI));
+    mySpeed=(Math.random()*50)+30;
     myC=color(255);
   }
   
-  void show(){
+  void show() {
     fill (myC);
     ellipse((float)myX,(float)myY,10,10);
+    if((myY>1000||myY<0||myX>1000||myX<0)&&((int)(Math.random()*2)>=1)){
+      myX=myY=(Math.random()*1000);
+    } else if((Math.random()*2<1)){
+      myX=myY=500;
+    }
   }
   
-  void move(){
+  void move() {
     myX=myX+(Math.cos(myAngle))*mySpeed;
     myY=myY+(Math.sin(myAngle))*mySpeed;
   }
 }
-  Particle[] sue = new Particle[1000];
+
+
+Particle[] sue = new Particle[1000];
   
-  void setup(){
+void setup() {
     size(1000,1000);
     noStroke();
-    for(int i = 0; i<sue.length; i++){
-      sue[i]= new Particle();
+    sue[0] = new OddballParticle(); 
+    for(int i = 1; i<sue.length; i++) {
+      sue[i]=new Particle();
     }
-  }
+}
   
-  void draw(){
+void draw() {
     background (0,0,0);
     for(int i=0;i<sue.length; i++){
-    sue[i].show();
-    sue[i].move();
+      sue[i].show();
+      sue[i].move();
     }
-  }
+}
