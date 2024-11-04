@@ -5,12 +5,15 @@ class OddballParticle extends Particle //inherits from Particle
       myAngle=((int)(Math.random()*2*Math.PI));
       mySpeed=(Math.random()*0)+1;
       myC=color(255,0,0);
-    }
-    
+    } 
     void show(){
       fill (myC);
       ellipse((float)myX,(float)myY,100,100);
+      if((myY>1000||myY<0||myX>1000||myX<0)&&((int)(Math.random()*2)>=1)){
+      myX=(Math.random()*1000);
+      myY=(Math.random()*1000);
     }
+}
 }
 
 
@@ -30,10 +33,13 @@ class Particle {
     ellipse((float)myX,(float)myY,10,10);
     if((myY>1000||myY<0||myX>1000||myX<0)&&((int)(Math.random()*2)>=1)){
       myX=myY=(Math.random()*1000);
-    } else if((Math.random()*2<1)){
+    } else if((Math.random()*2<1)&&(mousePressed==false)){
       myX=myY=500;
     }
-  }
+   if(mousePressed==true&&(myY>1000||myY<0||myX>1000||myX<0)&&((int)(Math.random()*2)>=1)){
+      myX=myY=(Math.random()*1000);
+   }
+ }
   
   void move() {
     myX=myX+(Math.cos(myAngle))*mySpeed;
