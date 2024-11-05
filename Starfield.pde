@@ -6,6 +6,8 @@ class OddballParticle extends Particle //inherits from Particle
       mySpeed=(Math.random()*0)+1;
       myC=color(255,0,0);
     } 
+    
+    
     void show(){
       fill (myC);
       ellipse((float)myX,(float)myY,100,100);
@@ -14,6 +16,19 @@ class OddballParticle extends Particle //inherits from Particle
       myY=(Math.random()*1000);
     }
 }
+    void move(){
+      if(mousePressed==true && ((int)(Math.random()*2)>=1)){
+      mySpeed=40;
+      myX=myX+mySpeed+(int)(Math.random()*20);
+      myY=myY+mySpeed+(int)(Math.random()*20);
+      } else if (mousePressed==true && ((int)(Math.random()*2)<1)){
+      myX=myX-mySpeed-(int)(Math.random()*20);
+      myY=myY-mySpeed-(int)(Math.random()*20);
+      } else{
+      myX=(int)(Math.random()*11)-5+myX;
+      myY=(int)(Math.random()*11)-5+myY;
+      }
+    }
 }
 
 
@@ -53,8 +68,9 @@ Particle[] sue = new Particle[1000];
 void setup() {
     size(1000,1000);
     noStroke();
-    sue[0] = new OddballParticle(); 
-    for(int i = 1; i<sue.length; i++) {
+    sue[0] = new OddballParticle();
+    sue[1] = new OddballParticle();
+    for(int i = 2; i<sue.length; i++) {
       sue[i]=new Particle();
     }
 }
